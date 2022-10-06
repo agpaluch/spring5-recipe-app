@@ -1,6 +1,7 @@
 package guru.springframework.spring5recipeapp.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,12 +16,11 @@ public class Recipe {
     private Integer servings;
     private String source;
     private String url;
+    @Lob
     private String directions;
 
-    //TODO
-    //private Difficulty difficulty;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private Set<Ingredient> ingredients;
+    private Set<Ingredient> ingredients = new HashSet<>();
     @Lob
     private Byte[] image;
 
@@ -34,9 +34,9 @@ public class Recipe {
     @JoinTable(name = "recipe_category",
             joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
-    Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -44,11 +44,11 @@ public class Recipe {
         this.id = id;
     }
 
-    String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    void setDescription(final String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
@@ -56,7 +56,7 @@ public class Recipe {
         return prepTime;
     }
 
-    void setPrepTime(final Integer prepTime) {
+    public void setPrepTime(final Integer prepTime) {
         this.prepTime = prepTime;
     }
 
@@ -64,7 +64,7 @@ public class Recipe {
         return cookTime;
     }
 
-    void setCookTime(final Integer cookTime) {
+    public void setCookTime(final Integer cookTime) {
         this.cookTime = cookTime;
     }
 
@@ -96,11 +96,11 @@ public class Recipe {
         return directions;
     }
 
-    void setDirections(final String directions) {
+    public void setDirections(final String directions) {
         this.directions = directions;
     }
 
-    Set<Ingredient> getIngredients() {
+    public Set<Ingredient> getIngredients() {
         return ingredients;
     }
 
@@ -120,7 +120,7 @@ public class Recipe {
         return difficulty;
     }
 
-    void setDifficulty(final Difficulty difficulty) {
+    public void setDifficulty(final Difficulty difficulty) {
         this.difficulty = difficulty;
     }
 
@@ -128,11 +128,18 @@ public class Recipe {
         return notes;
     }
 
-    void setNotes(final Notes notes) {
+    public void setNotes(Notes notes) {
         this.notes = notes;
+        notes.setRecipe(this);
     }
 
-    Set<Category> getCategories() {
+    public Recipe addIngredient(Ingredient ingredient){
+        ingredient.setRecipe(this);
+        this.ingredients.add(ingredient);
+        return this;
+    }
+
+    public Set<Category> getCategories() {
         return categories;
     }
 
