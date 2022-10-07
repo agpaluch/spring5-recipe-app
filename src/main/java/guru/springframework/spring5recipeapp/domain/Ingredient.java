@@ -1,9 +1,14 @@
 package guru.springframework.spring5recipeapp.domain;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Data
 @Entity
+@EqualsAndHashCode(exclude = "recipe")
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,43 +30,4 @@ public class Ingredient {
         this.uom = uom;
     }
 
-    Long getId() {
-        return id;
-    }
-
-    void setId(final Long id) {
-        this.id = id;
-    }
-
-    String getDescription() {
-        return description;
-    }
-
-    void setDescription(final String description) {
-        this.description = description;
-    }
-
-    BigDecimal getAmount() {
-        return amount;
-    }
-
-    void setAmount(final BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    UnitOfMeasure getUom() {
-        return uom;
-    }
-
-    void setUom(final UnitOfMeasure uom) {
-        this.uom = uom;
-    }
-
-    Recipe getRecipe() {
-        return recipe;
-    }
-
-    void setRecipe(final Recipe recipe) {
-        this.recipe = recipe;
-    }
 }

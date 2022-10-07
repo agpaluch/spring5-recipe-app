@@ -1,9 +1,12 @@
 package guru.springframework.spring5recipeapp.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Entity
 public class Recipe {
 
@@ -36,97 +39,6 @@ public class Recipe {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
-
-    void setId(final Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(final String description) {
-        this.description = description;
-    }
-
-    Integer getPrepTime() {
-        return prepTime;
-    }
-
-    public void setPrepTime(final Integer prepTime) {
-        this.prepTime = prepTime;
-    }
-
-    Integer getCookTime() {
-        return cookTime;
-    }
-
-    public void setCookTime(final Integer cookTime) {
-        this.cookTime = cookTime;
-    }
-
-    Integer getServings() {
-        return servings;
-    }
-
-    void setServings(final Integer servings) {
-        this.servings = servings;
-    }
-
-    String getSource() {
-        return source;
-    }
-
-    void setSource(final String source) {
-        this.source = source;
-    }
-
-    String getUrl() {
-        return url;
-    }
-
-    void setUrl(final String url) {
-        this.url = url;
-    }
-
-    String getDirections() {
-        return directions;
-    }
-
-    public void setDirections(final String directions) {
-        this.directions = directions;
-    }
-
-    public Set<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    void setIngredients(final Set<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    Byte[] getImage() {
-        return image;
-    }
-
-    void setImage(final Byte[] image) {
-        this.image = image;
-    }
-
-    Difficulty getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(final Difficulty difficulty) {
-        this.difficulty = difficulty;
-    }
-
-    Notes getNotes() {
-        return notes;
-    }
 
     public void setNotes(Notes notes) {
         this.notes = notes;
@@ -139,11 +51,4 @@ public class Recipe {
         return this;
     }
 
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
-    void setCategories(final Set<Category> categories) {
-        this.categories = categories;
-    }
-}
+ }

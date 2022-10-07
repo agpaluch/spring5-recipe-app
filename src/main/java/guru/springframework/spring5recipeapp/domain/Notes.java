@@ -1,8 +1,13 @@
 package guru.springframework.spring5recipeapp.domain;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 
+@Data
 @Entity
+@EqualsAndHashCode(exclude = "recipe")
 public class Notes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,27 +19,4 @@ public class Notes {
     @Lob
     private String recipeNotes;
 
-    Long getId() {
-        return id;
-    }
-
-    void setId(final Long id) {
-        this.id = id;
-    }
-
-    Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(final Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    String getRecipeNotes() {
-        return recipeNotes;
-    }
-
-    public void setRecipeNotes(final String description) {
-        this.recipeNotes = description;
-    }
 }

@@ -1,7 +1,10 @@
 package guru.springframework.spring5recipeapp.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 public class UnitOfMeasure {
 
@@ -13,27 +16,4 @@ public class UnitOfMeasure {
     @OneToOne
     private Ingredient ingredient;
 
-    public Long getId() {
-        return id;
-    }
-
-    void setId(final Long id) {
-        this.id = id;
-    }
-
-    String getDescription() {
-        return description;
-    }
-
-    void setDescription(final String uom) {
-        this.description = uom;
-    }
-
-    Ingredient getIngredient() {
-        return ingredient;
-    }
-
-    void setIngredient(final Ingredient ingredient) {
-        this.ingredient = ingredient;
-    }
 }
