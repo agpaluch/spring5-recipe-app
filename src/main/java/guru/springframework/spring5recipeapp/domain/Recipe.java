@@ -1,10 +1,14 @@
 package guru.springframework.spring5recipeapp.domain;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
 
 @Data
 @Entity
@@ -30,7 +34,7 @@ public class Recipe {
     @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Notes notes;
 
     @ManyToMany
@@ -51,4 +55,19 @@ public class Recipe {
         return this;
     }
 
- }
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", prepTime=" + prepTime +
+                ", cookTime=" + cookTime +
+                ", servings=" + servings +
+                ", source='" + source + '\'' +
+                ", url='" + url + '\'' +
+                ", directions='" + directions + '\'' +
+                ", image=" + Arrays.toString(image) +
+                ", difficulty=" + difficulty +
+                '}';
+    }
+}
